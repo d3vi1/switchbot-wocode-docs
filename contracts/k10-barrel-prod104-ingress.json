@@ -1,0 +1,215 @@
+{
+  "contract_id": "k10-barrel.prod104-ingress.static.v1",
+  "dispatch": {
+    "ext_receives_original_length": false,
+    "frame_argument": "staging + 3",
+    "initialization_after_header_mode_acceptance": true,
+    "length_argument": "staging[2]",
+    "reply_initial_byte_hex": "01"
+  },
+  "entrypoints": {
+    "application_callback": "0x00811EAC",
+    "ext_handler": "0x00810950",
+    "ext_tail_branch": "0x00810E34",
+    "full_frame_dispatcher": "0x00810D28",
+    "registered_thumb_callback": "0x00811EAD",
+    "registration": "0x00812694",
+    "reply_initialization": "0x00810D8A",
+    "reply_send_rom": "0x0004F7A4",
+    "reply_submission_call": "0x00816C2A",
+    "reply_wrapper": "0x00816464",
+    "service_add_rom": "0x0004F66E",
+    "service_wrapper": "0x00816314",
+    "worker_dispatch_call": "0x00816C0E",
+    "worker_wait": "0x00816BE8",
+    "write_callback": "0x008163B4"
+  },
+  "event": {
+    "connection_offset": 0,
+    "length_bytes": 2,
+    "length_offset": 6,
+    "selector_hex": "01",
+    "selector_offset": 4,
+    "type_hex": "03",
+    "type_offset": 1,
+    "value_pointer_bytes": 4,
+    "value_pointer_offset": 8,
+    "write_type_offset": 5
+  },
+  "firmware_filename": "WoSweeperMiniBarrel_app_prod_V1004.bin",
+  "firmware_sha256": "997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219",
+  "hardware_qualified": false,
+  "header": {
+    "class_mask": 15,
+    "combined_value": "a + b",
+    "configuration_address": "0x00207FC0",
+    "configuration_meanings_verified": false,
+    "ext_class": 15,
+    "flag_a_bit": 7,
+    "flag_a_byte_offset": 16,
+    "flag_b_bit": 5,
+    "flag_b_byte_offset": 17,
+    "invalid_magic_response_length": 0,
+    "magic_hex": "57",
+    "mode_mask": 3,
+    "mode_shift": 4,
+    "reserved_bits_reply_hex": "04",
+    "reserved_mask": 192,
+    "sum_evidence_address": "0x00810D58"
+  },
+  "layouts": {
+    "0": {
+      "clear": {
+        "host_minimum_bytes": 5,
+        "payload_hex": "58 0A 01"
+      },
+      "getter": {
+        "host_minimum_bytes": 6,
+        "ignored_frame_offset": 4,
+        "payload_prefix_hex": "59 0A",
+        "required_byte_hex": "01",
+        "required_frame_offset": 5
+      },
+      "set": {
+        "host_minimum_bytes": 12,
+        "ignored_frame_offset": 5,
+        "payload_prefix_hex": "58 0A 02",
+        "peer_frame_offset": 6,
+        "peer_length": 6
+      }
+    },
+    "1": {
+      "clear": {
+        "host_minimum_bytes": 9,
+        "payload_hex": "58 0A 01"
+      },
+      "getter": {
+        "host_minimum_bytes": 10,
+        "ignored_frame_offset": 8,
+        "payload_prefix_hex": "59 0A",
+        "required_byte_hex": "01",
+        "required_frame_offset": 9
+      },
+      "set": {
+        "host_minimum_bytes": 16,
+        "ignored_frame_offset": 9,
+        "payload_prefix_hex": "58 0A 02",
+        "peer_frame_offset": 10,
+        "peer_length": 6
+      }
+    }
+  },
+  "mapping": {
+    "file_offset": "0x238",
+    "loaded_address": "0x0080E000"
+  },
+  "modes": {
+    "0": {
+      "accepted_sums": [
+        0,
+        2
+      ],
+      "payload_offset": 2,
+      "rejected_reply_hex": "07"
+    },
+    "1": {
+      "bypass_sums": [
+        0
+      ],
+      "check_length": 4,
+      "check_value_provisioning_verified": false,
+      "comparison_helper": "0x008102AC",
+      "configuration_check_offset": 4,
+      "frame_check_offset": 2,
+      "helper_equal_result": 1,
+      "payload_offset": 6,
+      "rejected_reply_hex": "09"
+    },
+    "2": {
+      "payload_offset": null,
+      "rejected_reply_hex": "0A"
+    },
+    "3": {
+      "payload_offset": null,
+      "rejected_reply_hex": "0A"
+    }
+  },
+  "normal_service": {
+    "attribute_count": 6,
+    "attribute_record_bytes": 28,
+    "attribute_table_address": "0x008175F8",
+    "attribute_table_bytes": 168,
+    "bootstrap_helper": "0x00812934",
+    "callback_pointer_address": "0x002082CC",
+    "excluded_bootstrap_result": 2,
+    "service_id_address": "0x00208AAD",
+    "service_uuid": "CBA20D00-224D-11E6-9FB8-0002A5D5C51B",
+    "uuid_address": "0x008175E8"
+  },
+  "profile_id": "barrel-prod-1.04",
+  "qualification": "static_analysis_only",
+  "references": {
+    "fixtures": "../fixtures/k10-barrel-prod104-ingress.json",
+    "handler_contract": "k10-barrel-ext58.json",
+    "prose": "../appendices/k10-barrel-prod104-ingress.md"
+  },
+  "release_enabled": false,
+  "reply": {
+    "added_prefix_hex": "",
+    "attribute_index": 4,
+    "body_is_dispatcher_output": true,
+    "cccd_index": 5,
+    "cccd_runtime_state_verified": false,
+    "cccd_uuid_hex": "2902",
+    "declaration_properties_hex": "10",
+    "length_is_dispatcher_return_value": true,
+    "notification_delivery_verified": false,
+    "pdu_type": 0,
+    "pdu_type_meaning": "GATT_PDU_TYPE_ANY; response submitted to the notify-only declared attribute, not proof of stack acceptance or delivery.",
+    "stack_acceptance_verified": false,
+    "uuid": "CBA20003-224D-11E6-9FB8-0002A5D5C51B"
+  },
+  "schema_version": "0.1.0",
+  "scope": "Normal application GATT profile only; bootstrap helper result 2 selects a different, untraced profile.",
+  "staging": {
+    "address": "0x002080CF",
+    "busy_callback_result": 0,
+    "busy_frame_copied": false,
+    "cleared_frame_bytes": 247,
+    "connection_offset": 1,
+    "copy_count_bits": 16,
+    "copy_index_bits": 8,
+    "frame_offset": 3,
+    "large_write_admission_verified": false,
+    "length_offset": 2,
+    "local_maximum_length_guard": false,
+    "local_minimum_length_guard": false,
+    "pending_offset": 0,
+    "requires_empty_pending_slot": true,
+    "requires_registered_service_id": true,
+    "semaphore_address": "0x002092A4",
+    "stored_length_bits": 8,
+    "upstream_att_limits_verified": false
+  },
+  "unresolved": [
+    "Runtime link/stack security and ATT/MTU/long-write admission.",
+    "Meaning and provisioning of configuration flags and the four-byte comparison value.",
+    "Alternate bootstrap-result-2 service profile.",
+    "QR/advertisement-to-protocol address mapping.",
+    "Reciprocal association readback, reconnect behavior and persistence.",
+    "CCCD state, response submission success and actual notification delivery."
+  ],
+  "write": {
+    "accepted_callback_result": 0,
+    "attribute_index": 2,
+    "declaration_properties_hex": "0C",
+    "local_length_gate": false,
+    "local_write_type_gate": false,
+    "null_value_result_hex": "040D",
+    "permission_scope": "The declared attribute permission has no authentication/encryption request bits; runtime link/stack admission is not established.",
+    "permission_word_hex": "00000010",
+    "requires_nonnull_value_pointer": true,
+    "uuid": "CBA20002-224D-11E6-9FB8-0002A5D5C51B",
+    "wrong_attribute_result_hex": "040A"
+  }
+}

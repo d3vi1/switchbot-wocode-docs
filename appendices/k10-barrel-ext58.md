@@ -9,11 +9,11 @@ The [machine-readable contract](../contracts/k10-barrel-ext58.json) and [synthet
 | Profile | Original file | SHA-256 | EXT handler | Complete-frame dispatcher |
 |---|---|---|---|---|
 | Barrel Test 1.02 | `WoSweeperMiniBarrel_app_test_V1002.bin` | `0227cd90a7147c62985bc8a4080157e010b14e8a4ed69f7c2632535ae49479c5` | `0x00810950` | `0x00810CE4` |
-| Barrel Prod 1.04 | `WoSweeperMiniBarrel_app_prod_V1004.bin` | `997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219` | `0x00810950` | Unresolved in this pass |
+| Barrel Prod 1.04 | `WoSweeperMiniBarrel_app_prod_V1004.bin` | `997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219` | `0x00810950` | `0x00810D28` |
 
 The [corpus inventory](../corpus/firmware-inventory.json) independently identifies these exact file bytes. These profiles do not establish compatibility with every device sold as K10, Pro, K11, K20, or S10.
 
-Below, **F** is a complete frame and **P** begins at its EXT family byte (`58` or `59`). Test 1.02 mode 0 uses P = F + 2. Mode 1 uses P = F + 6, after four additional bytes. The independently examined Prod 1.04 handler establishes **payload-relative coordinates only**; do not assume its complete-frame dispatcher was validated by a matching symbol name.
+Below, **F** is a complete frame and **P** begins at its EXT family byte (`58` or `59`). Test 1.02 mode 0 uses P = F + 2. Mode 1 uses P = F + 6, after four additional bytes. Prod 1.04 now has the same verified offsets through its separately traced [normal GATT ingress and dispatcher](k10-barrel-prod104-ingress.md); matching symbol names were not used as proof.
 
 ## Before interpreting a response
 
@@ -23,7 +23,7 @@ Mode 1 has its own comparison gate and rejection `09`. Its precise recovered pre
 
 ## Set the six peer bytes
 
-The Test 1.02 mode-0 research encoding is:
+The Test 1.02 and normal Prod 1.04 mode-0 research encoding is:
 
 | F offset | Length | Meaning |
 |---:|---:|---|
@@ -37,7 +37,7 @@ The Test 1.02 mode-0 research encoding is:
 
 Both examined EXT handlers copy P[4..9]. They do not read P[3] in this branch. An encoder can emit `00` at F[5] as an explicit client convention. It is **not a captured vendor value**, and no field meaning is assigned to it.
 
-Emit exactly 12 bytes from the research encoder. The complete Test 1.02 dispatcher and this branch do not enforce that minimum locally; the host contract supplies all six bytes that the firmware reads.
+Emit exactly 12 bytes from the research encoder. The examined complete dispatchers and this branch do not enforce that minimum locally; the host contract supplies all six bytes that the firmware reads.
 
 The binding state has a connection identifier, a binding flag, and six peer bytes. Set rejects with one-byte `02` when the flag is 1 **and** the connection identifier is not `FF`. A flag of 1 with connection identifier `FF` does not trigger this rejection.
 
@@ -65,7 +65,7 @@ Test 1.02 mode 0 uses `57 0F 58 0A 01`. The branch changes state only when the f
 
 Thus the clear reply alone cannot distinguish a state-changing clear from an accepted no-change branch. Inspect state after interruption before retrying a clear.
 
-For other `58/0A` operations, including `00` and `03`, no pairing mutation is implemented. The Test 1.02 complete dispatcher still returns one-byte `01`. The production EXT branch also performs no pairing mutation, but its returned first byte inherits caller initialization; that complete caller is unresolved. A generic “status 01 means supported” rule is incorrect.
+For other `58/0A` operations, including `00` and `03`, no pairing mutation is implemented. The Test 1.02 complete dispatcher still returns one-byte `01`. Prod 1.04 now has a traced complete dispatcher: it initializes reply byte 0 to `01` at `0x00810D8A` after header/mode acceptance, so its unsupported operation reply is also exactly one-byte `01` with no pairing mutation. A generic “status 01 means supported” rule is incorrect.
 
 ## Read behavior differs by firmware
 
@@ -81,7 +81,7 @@ The data reply has 15 bytes:
 | 3 | 6 | Stored peer bytes, unchanged |
 | 9 | 6 | Local source bytes reversed from offsets 2–7 |
 
-When the predicate is false, the production EXT handler returns one-byte `01` without address data. Do not invent different read operations based on P[2], or treat this profile as a universal peer-read API. Production fixtures deliberately provide EXT payloads rather than claiming a validated complete-frame encoding.
+When the predicate is false, the production EXT handler returns one-byte `01` without address data. Do not invent different read operations based on P[2], or treat this profile as a universal peer-read API. The complete normal Prod mode-0 getter is `57 0F 59 0A <ignored> 01`; mode 1 inserts four comparison bytes after `57 1F`. See the [production frame reference](k10-barrel-prod104-ingress.md#complete-research-layouts) for byte positions, gates and synthetic complete-frame examples.
 
 ## Address representation
 
@@ -95,7 +95,7 @@ The old encoder placed peer bytes directly after `57 0F 58 0A 02`, starting at F
 
 The traced Test 1.02 ingress callback at `0x00811E68` clears 247 staging payload bytes before copying the incoming data. **If that ingress accepts the short message**, the resulting peer is the five final supplied bytes followed by `00`. This is a conditional static result, not a captured BLE exchange or a claim about every ingress path.
 
-Ingress additionally requires a matching configured service identifier, event type `03`, event field 4 equal to `01`, and empty staging. The main loop at `0x00816AAC` dispatches that staged payload. The complete CBA characteristic registration chain and runtime transport admission remain unresolved.
+Ingress additionally requires a matching configured service identifier, event type `03`, event field 4 equal to `01`, and empty staging. The main loop at `0x00816AAC` dispatches that staged payload. For Test 1.02, the complete CBA characteristic registration chain and runtime transport admission remain unresolved. Prod 1.04 has a separately verified [normal service registration and response-submission chain](k10-barrel-prod104-ingress.md#the-normal-application-service); runtime delivery remains untested.
 
 ## Persistent storage: demonstrated functions, unfinished causal chain
 
@@ -123,8 +123,8 @@ The `HardwareQualified` state in the diagram describes a future acceptance condi
 ## Work still required
 
 1. Resolve the deferred-event table initialization and completion/error path.
-2. Locate Prod 1.04's actual complete-frame dispatcher.
-3. Finish characteristic registration and ingress admission tracing.
+2. Investigate the alternative Prod 1.04 service profile and runtime admission/delivery limits.
+3. Finish Test 1.02 characteristic registration tracing without borrowing production evidence.
 4. Establish QR/advertisement/GAP representation using identified devices.
 5. Verify both peer associations, reconnect behavior, and persistence on authorized hardware.
 

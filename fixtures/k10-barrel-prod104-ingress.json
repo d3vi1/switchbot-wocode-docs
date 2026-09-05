@@ -1,0 +1,474 @@
+{
+  "contract_id": "k10-barrel.prod104-ingress.static.v1",
+  "firmware_sha256": "997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219",
+  "frame_cases": [
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": true,
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "id": "mode0-set",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "set",
+      "request_hex": "57 0F 58 0A 02 00 12 34 56 78 9A BC"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": true,
+      "expected_reply_hex": "01",
+      "id": "mode0-clear",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "clear",
+      "request_hex": "57 0F 58 0A 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": false,
+      "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "id": "mode0-getter",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "getter",
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": false,
+      "expected_reply_hex": "01",
+      "id": "mode0-unsupported",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "unsupported",
+      "request_hex": "57 0F 58 0A 03"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": true,
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "id": "mode1-set",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "set",
+      "request_hex": "57 1F 11 22 33 44 58 0A 02 00 12 34 56 78 9A BC"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": true,
+      "expected_reply_hex": "01",
+      "id": "mode1-clear",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "clear",
+      "request_hex": "57 1F 11 22 33 44 58 0A 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": false,
+      "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "id": "mode1-getter",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "getter",
+      "request_hex": "57 1F 11 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "expected_mutation": false,
+      "expected_reply_hex": "01",
+      "id": "mode1-unsupported",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "unsupported",
+      "request_hex": "57 1F 11 22 33 44 58 0A 03"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_reply_hex": "",
+      "id": "invalid-magic",
+      "kind": "header_rejection",
+      "request_hex": "00 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "expected_reply_hex": "04",
+      "id": "reserved-header",
+      "kind": "header_rejection",
+      "request_hex": "57 4F 59 0A 00 01"
+    }
+  ],
+  "hardware_qualified": false,
+  "mode_cases": [
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-0-flags-00-check-None",
+      "payload_offset": 2,
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-1-flags-00-check-False",
+      "payload_offset": 6,
+      "request_hex": "57 1F 44 33 22 11 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-1-flags-00-check-True",
+      "payload_offset": 6,
+      "request_hex": "57 1F 11 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-2-flags-00-check-None",
+      "payload_offset": null,
+      "request_hex": "57 2F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-3-flags-00-check-None",
+      "payload_offset": null,
+      "request_hex": "57 3F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "07",
+      "ext_reached": false,
+      "id": "mode-0-flags-01-check-None",
+      "payload_offset": null,
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode-1-flags-01-check-False",
+      "payload_offset": null,
+      "request_hex": "57 1F 44 33 22 11 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-1-flags-01-check-True",
+      "payload_offset": 6,
+      "request_hex": "57 1F 11 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-2-flags-01-check-None",
+      "payload_offset": null,
+      "request_hex": "57 2F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 0,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-3-flags-01-check-None",
+      "payload_offset": null,
+      "request_hex": "57 3F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "07",
+      "ext_reached": false,
+      "id": "mode-0-flags-10-check-None",
+      "payload_offset": null,
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode-1-flags-10-check-False",
+      "payload_offset": null,
+      "request_hex": "57 1F 44 33 22 11 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-1-flags-10-check-True",
+      "payload_offset": 6,
+      "request_hex": "57 1F 11 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-2-flags-10-check-None",
+      "payload_offset": null,
+      "request_hex": "57 2F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-3-flags-10-check-None",
+      "payload_offset": null,
+      "request_hex": "57 3F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-0-flags-11-check-None",
+      "payload_offset": 2,
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode-1-flags-11-check-False",
+      "payload_offset": null,
+      "request_hex": "57 1F 44 33 22 11 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": null,
+      "ext_reached": true,
+      "id": "mode-1-flags-11-check-True",
+      "payload_offset": 6,
+      "request_hex": "57 1F 11 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-2-flags-11-check-None",
+      "payload_offset": null,
+      "request_hex": "57 2F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 1,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "0A",
+      "ext_reached": false,
+      "id": "mode-3-flags-11-check-None",
+      "payload_offset": null,
+      "request_hex": "57 3F 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode1-check-mismatch-byte0",
+      "payload_offset": null,
+      "request_hex": "57 1F 91 22 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode1-check-mismatch-byte1",
+      "payload_offset": null,
+      "request_hex": "57 1F 11 A2 33 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode1-check-mismatch-byte2",
+      "payload_offset": null,
+      "request_hex": "57 1F 11 22 B3 44 59 0A 00 01"
+    },
+    {
+      "config_bit_a": 1,
+      "config_bit_b": 0,
+      "config_check4_hex": "11 22 33 44",
+      "error_body_hex": "09",
+      "ext_reached": false,
+      "id": "mode1-check-mismatch-byte3",
+      "payload_offset": null,
+      "request_hex": "57 1F 11 22 33 C4 59 0A 00 01"
+    }
+  ],
+  "profile_id": "barrel-prod-1.04",
+  "provenance": "Original synthetic examples derived from static firmware analysis; no captured requests, real addresses, or hardware qualification.",
+  "schema_version": "0.1.0",
+  "transport_cases": [
+    {
+      "attribute_index": 2,
+      "command_execution_proven": false,
+      "event_selector": 1,
+      "event_type": 3,
+      "expected_callback_result_hex": "0000",
+      "frame_copied": true,
+      "id": "empty-slot",
+      "kind": "staging_admission",
+      "pending": 0,
+      "service_id_matches": true,
+      "value_pointer_nonnull": true
+    },
+    {
+      "attribute_index": 2,
+      "command_execution_proven": false,
+      "event_selector": 1,
+      "event_type": 3,
+      "expected_callback_result_hex": "0000",
+      "frame_copied": false,
+      "id": "busy-slot",
+      "kind": "staging_admission",
+      "pending": 1,
+      "service_id_matches": true,
+      "value_pointer_nonnull": true
+    },
+    {
+      "attribute_index": 4,
+      "command_execution_proven": false,
+      "event_selector": 1,
+      "event_type": 3,
+      "expected_callback_result_hex": "040A",
+      "frame_copied": false,
+      "id": "wrong-attribute",
+      "kind": "staging_admission",
+      "pending": 0,
+      "service_id_matches": true,
+      "value_pointer_nonnull": true
+    },
+    {
+      "attribute_index": 2,
+      "command_execution_proven": false,
+      "event_selector": 1,
+      "event_type": 3,
+      "expected_callback_result_hex": "040D",
+      "frame_copied": false,
+      "id": "null-value",
+      "kind": "staging_admission",
+      "pending": 0,
+      "service_id_matches": true,
+      "value_pointer_nonnull": false
+    },
+    {
+      "attribute_index": 2,
+      "command_execution_proven": false,
+      "event_selector": 1,
+      "event_type": 3,
+      "expected_callback_result_hex": "0000",
+      "frame_copied": false,
+      "id": "other-service",
+      "kind": "staging_admission",
+      "pending": 0,
+      "service_id_matches": false,
+      "value_pointer_nonnull": true
+    },
+    {
+      "admission_assumed_only": true,
+      "conditional_peer_hex": "34 56 78 9A BC 00",
+      "hardware_observed": false,
+      "host_supplies_all_fields": false,
+      "id": "short-set-conditional-staging",
+      "kind": "short_frame",
+      "request_hex": "57 0F 58 0A 02 12 34 56 78 9A BC"
+    }
+  ]
+}

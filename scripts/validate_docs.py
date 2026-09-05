@@ -13,6 +13,8 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+from validate_prod_ingress import check_prod_ingress
+
 
 def check_repository(root):
     errors = []
@@ -91,8 +93,14 @@ def check_repository(root):
         require(profile["hardware_qualified"] is False, "profile is not hardware qualified")
     for key, path in contract["references"].items():
         require((root / "contracts" / path).resolve().is_file(), f"missing contract reference {key}")
-    require(profiles["barrel-prod-1.04"]["mode0_full_frame_coordinates_verified"] is False,
-            "production full frame mapping remains unresolved")
+    production = load("contracts/k10-barrel-prod104-ingress.json")
+    production_fixtures = load("fixtures/k10-barrel-prod104-ingress.json")
+    catalog = load("catalog/capabilities.json")
+    if any(item is None for item in (production, production_fixtures, catalog)):
+        return errors, counts
+    for key, path in production["references"].items():
+        require((root / "contracts" / path).resolve().is_file(), f"missing production reference {key}")
+    check_prod_ingress(production, production_fixtures, contract, catalog, require, counts)
     setter = contract["set_peer"]
     require(setter["test_mode0_peer_offset"] == contract["coordinates"]["test_1_02_mode0_payload_offset"] + setter["payload_peer_offset"],
             "setter payload/full frame coordinates disagree")
@@ -143,6 +151,9 @@ def check_repository(root):
             same(b"\x01", case["expected_reply_hex"], "stub response")
         elif kind == "production_getter":
             payload = bytes.fromhex(case["request_payload_hex"])
+            require(case["mode"] == 0 and case["header_gate_accepted"] is True,
+                    f"{case_id}: production complete-frame scope")
+            require(request == b"\x57\x0f" + payload, f"{case_id}: production full-frame/payload mismatch")
             same(payload[:2], "59 0A", "production getter selector prefix")
             getter = contract["get_peer"]["prod_1_04"]
             require(case["profile_id"] == "barrel-prod-1.04" and len(payload) >= 4, f"{case_id}: production payload")

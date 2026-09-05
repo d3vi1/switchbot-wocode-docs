@@ -150,6 +150,7 @@
     {
       "contains_peer_data": true,
       "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "header_gate_accepted": true,
       "id": "prod-getter-ignored-00",
       "initial_state": {
         "binding_flag": 1,
@@ -158,12 +159,15 @@
         "stored_peer_hex": "12 34 56 78 9A BC"
       },
       "kind": "production_getter",
+      "mode": 0,
       "profile_id": "barrel-prod-1.04",
+      "request_hex": "57 0F 59 0A 00 01",
       "request_payload_hex": "59 0A 00 01"
     },
     {
       "contains_peer_data": true,
       "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "header_gate_accepted": true,
       "id": "prod-getter-ignored-a5",
       "initial_state": {
         "binding_flag": 1,
@@ -172,12 +176,15 @@
         "stored_peer_hex": "12 34 56 78 9A BC"
       },
       "kind": "production_getter",
+      "mode": 0,
       "profile_id": "barrel-prod-1.04",
+      "request_hex": "57 0F 59 0A A5 01",
       "request_payload_hex": "59 0A A5 01"
     },
     {
       "contains_peer_data": false,
       "expected_reply_hex": "01",
+      "header_gate_accepted": true,
       "id": "prod-getter-wrong-query-offset",
       "initial_state": {
         "binding_flag": 0,
@@ -186,12 +193,15 @@
         "stored_peer_hex": "12 34 56 78 9A BC"
       },
       "kind": "production_getter",
+      "mode": 0,
       "profile_id": "barrel-prod-1.04",
+      "request_hex": "57 0F 59 0A 01 00",
       "request_payload_hex": "59 0A 01 00"
     },
     {
       "contains_peer_data": false,
       "expected_reply_hex": "01",
+      "header_gate_accepted": true,
       "id": "prod-getter-current-binding",
       "initial_state": {
         "binding_flag": 1,
@@ -200,7 +210,9 @@
         "stored_peer_hex": "12 34 56 78 9A BC"
       },
       "kind": "production_getter",
+      "mode": 0,
       "profile_id": "barrel-prod-1.04",
+      "request_hex": "57 0F 59 0A 00 01",
       "request_payload_hex": "59 0A 00 01"
     },
     {

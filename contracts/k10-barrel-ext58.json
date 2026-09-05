@@ -25,17 +25,22 @@
   "contract_id": "k10-barrel.ext58.selector0a.static.v1",
   "coordinates": {
     "payload": "P starts at the EXT family byte 58 or 59.",
-    "production_full_frame_coordinates": "unresolved; production observations below use P coordinates only",
+    "prod_1_04_mode0_payload_offset": 2,
+    "prod_1_04_mode1_payload_offset": 6,
+    "production_full_frame_coordinates": "Prod 1.04 normal GATT path: P = F + 2 in mode 0; P = F + 6 in mode 1, after the profile-specific header gate.",
     "test_1_02_mode0_payload_offset": 2,
     "test_1_02_mode1_payload_offset": 6
   },
   "get_peer": {
     "prod_1_04": {
-      "full_frame_encoding_verified": false,
+      "full_frame_encoding_verified": true,
       "ignored_payload_offset": 2,
       "local_address_relation": "Reverse the six source bytes at 0x00208A6B[2..7].",
       "local_address_reply_offset": 9,
       "minimum_payload_length_for_branch": 4,
+      "mode0_frame_hex": "57 0F 59 0A 00 01",
+      "mode0_host_minimum_length": 6,
+      "mode1_host_minimum_length": 10,
       "payload_prefix_hex": "59 0A",
       "predicate": "P[3] == 01 and (binding_flag != 1 or connection_identifier == FF)",
       "predicate_false_reply_hex": "01",
@@ -124,10 +129,11 @@
       "ext_parser_address": "0x00810950",
       "firmware_filename": "WoSweeperMiniBarrel_app_prod_V1004.bin",
       "firmware_sha256": "997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219",
-      "full_frame_dispatcher_address": null,
+      "full_frame_dispatcher_address": "0x00810D28",
       "hardware_qualified": false,
       "id": "barrel-prod-1.04",
-      "mode0_full_frame_coordinates_verified": false,
+      "mode0_full_frame_coordinates_verified": true,
+      "mode1_full_frame_coordinates_verified": true,
       "program_id": "SweeperMiniBarrel_Prod_1.04"
     }
   ],
@@ -135,6 +141,7 @@
   "references": {
     "corpus": "../corpus/firmware-inventory.json",
     "fixtures": "../fixtures/k10-barrel-ext58.json",
+    "production_ingress": "../contracts/k10-barrel-prod104-ingress.json",
     "prose": "../appendices/k10-barrel-ext58.md"
   },
   "release_enabled": false,
@@ -185,7 +192,7 @@
       "02"
     ],
     "pairing_mutation": false,
-    "production_reply_initialization": "The EXT handler returns length 1 and inherits caller initialization; full production dispatcher is unresolved.",
+    "production_reply_initialization": "Dispatcher 0x00810D28 initializes reply[0] to 01 at 0x00810D8A after header/mode acceptance. Unsupported 58/0A operations return exactly that one-byte body, with no pairing mutation.",
     "test_dispatcher_reply_hex": "01"
   }
 }
