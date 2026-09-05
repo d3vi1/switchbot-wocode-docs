@@ -1,0 +1,191 @@
+{
+  "address_order": {
+    "client_type": "Use explicit six-byte protocol address data; do not silently convert a QR/display MAC.",
+    "gap_link_handler_address": "0x00811AE4",
+    "gap_rom_even_address": "0x0004DBEE",
+    "memcmp_rom_even_address": "0x00059E04",
+    "peer_copy": "Request P[4..9], stored peer bytes and successful setter echo preserve the same byte order.",
+    "qr_or_display_mac_conversion_verified": false,
+    "test_1_02_gap_relation": "Stored peer bytes are compared with reversed le_get_conn_addr output."
+  },
+  "clear_peer": {
+    "conditional_effects": [
+      "Set binding flag to 0.",
+      "Zero the six peer bytes.",
+      "Post event 3 to queue 0x002092C0."
+    ],
+    "false_predicate": "Same reply without state mutation or event.",
+    "host_frame_length": 5,
+    "payload_hex": "58 0A 01",
+    "reply_hex": "01",
+    "reply_length": 1,
+    "state_change_predicate": "binding_flag != 0 or connection_identifier == FF",
+    "test_mode0_frame_hex": "57 0F 58 0A 01"
+  },
+  "contract_id": "k10-barrel.ext58.selector0a.static.v1",
+  "coordinates": {
+    "payload": "P starts at the EXT family byte 58 or 59.",
+    "production_full_frame_coordinates": "unresolved; production observations below use P coordinates only",
+    "test_1_02_mode0_payload_offset": 2,
+    "test_1_02_mode1_payload_offset": 6
+  },
+  "get_peer": {
+    "prod_1_04": {
+      "full_frame_encoding_verified": false,
+      "ignored_payload_offset": 2,
+      "local_address_relation": "Reverse the six source bytes at 0x00208A6B[2..7].",
+      "local_address_reply_offset": 9,
+      "minimum_payload_length_for_branch": 4,
+      "payload_prefix_hex": "59 0A",
+      "predicate": "P[3] == 01 and (binding_flag != 1 or connection_identifier == FF)",
+      "predicate_false_reply_hex": "01",
+      "predicate_false_reply_length": 1,
+      "query_byte_hex": "01",
+      "query_byte_offset": 3,
+      "reply_length": 15,
+      "reply_prefix_hex": "01 20 01",
+      "stored_peer_reply_offset": 3
+    },
+    "test_1_02": {
+      "contains_peer_data": false,
+      "implemented": false,
+      "reply_hex": "01",
+      "reply_length": 1,
+      "selector_hex": "59 0A"
+    }
+  },
+  "hardware_qualified": false,
+  "ingress": {
+    "callback_address": "0x00811E68",
+    "complete_cba_registration_chain_verified": false,
+    "conditions": [
+      "Configured service identifier matches.",
+      "Event type is 03.",
+      "Event field 4 is 01.",
+      "Staging is empty.",
+      "Header gate accepts the frame."
+    ],
+    "hardware_transport_acceptance_verified": false,
+    "legacy_11_byte_result": "If the documented ingress admits the old 11-byte frame, bytes F[6..10] plus a zero from cleared staging become the stored peer.",
+    "main_loop_address": "0x00816AAC",
+    "staging_payload_zeroed_bytes": 247,
+    "verified_profile": "barrel-test-1.02"
+  },
+  "issues": {
+    "application": "https://github.com/d3vi1/Switchbot-K10-Re-Pair/issues/7",
+    "documentation": "https://github.com/d3vi1/switchbot-wocode-docs/issues/2"
+  },
+  "mode0_header_gate": {
+    "configuration_flag_meanings": "unassigned",
+    "configuration_predicate": "bit7(config[0x10]) equals bit5(config[0x11])",
+    "header_hex": "0F",
+    "invalid_magic": "not a WoCode frame; zero response length",
+    "magic_hex": "57",
+    "nonzero_version_bits_reply_hex": "04",
+    "predicate_false_reply_hex": "07",
+    "unsupported_modes_2_3_reply_hex": "0A",
+    "verified_profile": "barrel-test-1.02"
+  },
+  "mode1_boundary": {
+    "comparison_failure_reply_hex": "09",
+    "gate": "Let a=bit7(config[0x10]) and b=-bit5(config[0x11]); accept when a==b or the four-byte comparison helper returns nonzero.",
+    "payload_offset": 6,
+    "token_acquisition_semantics": "unresolved in this contract",
+    "verified_profile": "barrel-test-1.02"
+  },
+  "persistence": {
+    "deferred_dispatch_initialization_verified": false,
+    "direct_handler_save": false,
+    "ftl_logical_offset": "0x30",
+    "load_rom_even_address": "0x0000B906",
+    "load_wrapper_address": "0x00812880",
+    "power_cycle_persistence_verified": false,
+    "ram_record_address": "0x002080C7",
+    "record_length": 8,
+    "rom_symbol_source_sha256": "48d9dd74b12193a5a77cfd5c86767aa24fd7afe37c63e38e9e50eac6ff253dab",
+    "runtime_flash_commit_verified": false,
+    "save_rom_even_address": "0x0000B918",
+    "save_wrapper_address": "0x008128AC",
+    "static_save_and_load_wrappers_verified": true,
+    "verified_profile": "barrel-test-1.02"
+  },
+  "profiles": [
+    {
+      "ext_parser_address": "0x00810950",
+      "firmware_filename": "WoSweeperMiniBarrel_app_test_V1002.bin",
+      "firmware_sha256": "0227cd90a7147c62985bc8a4080157e010b14e8a4ed69f7c2632535ae49479c5",
+      "full_frame_dispatcher_address": "0x00810ce4",
+      "hardware_qualified": false,
+      "id": "barrel-test-1.02",
+      "mode0_full_frame_coordinates_verified": true,
+      "program_id": "SweeperMiniBarrel_Test_1.02"
+    },
+    {
+      "ext_parser_address": "0x00810950",
+      "firmware_filename": "WoSweeperMiniBarrel_app_prod_V1004.bin",
+      "firmware_sha256": "997788eedfa24ddf4b7d7c082b9b8994578296c437c3b11802224f957c5cb219",
+      "full_frame_dispatcher_address": null,
+      "hardware_qualified": false,
+      "id": "barrel-prod-1.04",
+      "mode0_full_frame_coordinates_verified": false,
+      "program_id": "SweeperMiniBarrel_Prod_1.04"
+    }
+  ],
+  "qualification": "static_analysis_only",
+  "references": {
+    "corpus": "../corpus/firmware-inventory.json",
+    "fixtures": "../fixtures/k10-barrel-ext58.json",
+    "prose": "../appendices/k10-barrel-ext58.md"
+  },
+  "release_enabled": false,
+  "schema_version": "0.1.0",
+  "set_peer": {
+    "accepted_effects": [
+      "Post a two-byte 00 01 event to the separate queue at 0x002092BC.",
+      "Assign connection identifier from ingress staging byte 1.",
+      "Set binding flag to 1.",
+      "Copy P[4..9] into the six peer bytes without reversal.",
+      "Post event 0 to the queue at 0x002092C0."
+    ],
+    "accepted_reply_length": 7,
+    "accepted_reply_peer_offset": 1,
+    "accepted_reply_requires_exact_echo": true,
+    "accepted_reply_status_hex": "01",
+    "completion_boundary": "Exact echo validates immediate stored bytes, not reciprocal pairing, reconnect success or durability.",
+    "firmware_local_length_guard": false,
+    "host_exact_frame_length": 12,
+    "host_length_policy": "A research encoder emits exactly 12 bytes. This is not a firmware-enforced length check.",
+    "ignored_byte": {
+      "codec_convention_hex": "00",
+      "convention_basis": "Client convention; not a captured vendor value or assigned field meaning.",
+      "payload_offset": 3,
+      "read_by_operation": false
+    },
+    "payload_peer_offset": 4,
+    "payload_prefix_hex": "58 0A 02",
+    "peer_length": 6,
+    "reject_predicate": "binding_flag == 1 and connection_identifier != FF",
+    "rejected_reply_hex": "02",
+    "rejected_reply_length": 1,
+    "test_mode0_frame_prefix_hex": "57 0F 58 0A 02",
+    "test_mode0_ignored_offset": 5,
+    "test_mode0_peer_offset": 6
+  },
+  "state": {
+    "auxiliary_counter_offset": 13,
+    "base_address": "0x002080C1",
+    "binding_flag_offset": 6,
+    "connection_identifier_offset": 0,
+    "peer_bytes_length": 6,
+    "peer_bytes_offset": 7
+  },
+  "unsupported_set_operations": {
+    "excluded_operation_hex": [
+      "01",
+      "02"
+    ],
+    "pairing_mutation": false,
+    "production_reply_initialization": "The EXT handler returns length 1 and inherits caller initialization; full production dispatcher is unresolved.",
+    "test_dispatcher_reply_hex": "01"
+  }
+}
