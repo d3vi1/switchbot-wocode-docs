@@ -26,6 +26,10 @@ Applications are GPLv3 with the agreed narrowly scoped store distribution permis
 
 The coordinator and at most three specialists work concurrently. Each owns named modules and an isolated worktree. Exactly one agent owns the Ghidra/MCP lease; independent reviewers take the lease only after it is released. Work follows issue → milestone → PR → verification → squash merge → close. Final review is independent of implementation.
 
+## Per-product BLE API changelogs
+
+Additive objective approved on 2026-09-05: maintain a dedicated BLE API-only changelog for every analyzed product, including separate SweeperMini/SweeperMiniBarrel and SweeperMiniPro/Pro-barrel histories and the corresponding S10 components. These histories supplement version/capability gates. Entries describe evidence-backed command, field, reply, admission and externally visible behavior differences between exact firmware images. Static comparisons and real captures remain distinct; unrelated internal firmware changes are excluded. See [the changelog index](../changelog/README.md).
+
 ## Application architecture and purchases
 
 Use the [shared operation model](../reference/operations.md). QR/radio matching identifies inspected targets and never proves electrical compatibility. A station-only mutation selects a pair containing that station. No implicit write targets a third device.

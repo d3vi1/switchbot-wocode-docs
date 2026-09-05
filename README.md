@@ -14,6 +14,7 @@ Swift application: [Switchbot-K10-Re-Pair](https://github.com/d3vi1/Switchbot-K1
 - [Understand what is currently supported](models/README.md).
 - [Read the K10 pairing investigation](guides/k10-pairing.md).
 - [Understand firmware upgrades and downgrades](guides/application-firmware.md).
+- [Compare per-product BLE API changes](changelog/README.md).
 - [Follow the implementation roadmap](project/implementation-plan.md).
 
 ## Implement a client
