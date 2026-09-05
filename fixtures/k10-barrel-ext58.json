@@ -1,0 +1,302 @@
+{
+  "cases": [
+    {
+      "expected_mutation": true,
+      "expected_peer_hex": "12 34 56 78 9A BC",
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "header_gate_accepted": true,
+      "id": "set-ignored-00",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF"
+      },
+      "kind": "handler_set",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 02 00 12 34 56 78 9A BC"
+    },
+    {
+      "expected_mutation": true,
+      "expected_peer_hex": "12 34 56 78 9A BC",
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "header_gate_accepted": true,
+      "id": "set-ignored-a5",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF"
+      },
+      "kind": "handler_set",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 02 A5 12 34 56 78 9A BC"
+    },
+    {
+      "expected_mutation": true,
+      "expected_peer_hex": "12 34 56 78 9A BC",
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "header_gate_accepted": true,
+      "id": "set-ignored-ff",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF"
+      },
+      "kind": "handler_set",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 02 FF 12 34 56 78 9A BC"
+    },
+    {
+      "expected_mutation": false,
+      "expected_reply_hex": "02",
+      "header_gate_accepted": true,
+      "id": "set-reject-current-binding",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "01"
+      },
+      "kind": "handler_set",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 02 00 12 34 56 78 9A BC"
+    },
+    {
+      "expected_mutation": true,
+      "expected_peer_hex": "12 34 56 78 9A BC",
+      "expected_reply_hex": "01 12 34 56 78 9A BC",
+      "header_gate_accepted": true,
+      "id": "set-bound-but-no-connection",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "FF"
+      },
+      "kind": "handler_set",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 02 00 12 34 56 78 9A BC"
+    },
+    {
+      "conditional_zero_staging_peer_hex": "34 56 78 9A BC 00",
+      "host_accepts": false,
+      "id": "legacy-short-request",
+      "kind": "host_request_validation",
+      "profile_id": "barrel-test-1.02",
+      "qualification": "Conditional static ingress result, not a recorded request.",
+      "request_hex": "57 0F 58 0A 02 12 34 56 78 9A BC"
+    },
+    {
+      "expected_event3": false,
+      "expected_mutation": false,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "clear-flag0-conn01",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "01"
+      },
+      "kind": "handler_clear",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 01"
+    },
+    {
+      "expected_event3": true,
+      "expected_mutation": true,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "clear-flag1-conn01",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "01"
+      },
+      "kind": "handler_clear",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 01"
+    },
+    {
+      "expected_event3": true,
+      "expected_mutation": true,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "clear-flag0-connff",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF"
+      },
+      "kind": "handler_clear",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 01"
+    },
+    {
+      "expected_mutation": false,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "unsupported-00",
+      "kind": "unsupported_operation",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 00"
+    },
+    {
+      "expected_mutation": false,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "unsupported-03",
+      "kind": "unsupported_operation",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 58 0A 03"
+    },
+    {
+      "contains_peer_data": false,
+      "expected_reply_hex": "01",
+      "header_gate_accepted": true,
+      "id": "test-no-getter",
+      "kind": "getter_stub",
+      "profile_id": "barrel-test-1.02",
+      "request_hex": "57 0F 59 0A 00 01"
+    },
+    {
+      "contains_peer_data": true,
+      "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "id": "prod-getter-ignored-00",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "production_getter",
+      "profile_id": "barrel-prod-1.04",
+      "request_payload_hex": "59 0A 00 01"
+    },
+    {
+      "contains_peer_data": true,
+      "expected_reply_hex": "01 20 01 12 34 56 78 9A BC 77 66 55 44 33 22",
+      "id": "prod-getter-ignored-a5",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "production_getter",
+      "profile_id": "barrel-prod-1.04",
+      "request_payload_hex": "59 0A A5 01"
+    },
+    {
+      "contains_peer_data": false,
+      "expected_reply_hex": "01",
+      "id": "prod-getter-wrong-query-offset",
+      "initial_state": {
+        "binding_flag": 0,
+        "connection_identifier_hex": "FF",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "production_getter",
+      "profile_id": "barrel-prod-1.04",
+      "request_payload_hex": "59 0A 01 00"
+    },
+    {
+      "contains_peer_data": false,
+      "expected_reply_hex": "01",
+      "id": "prod-getter-current-binding",
+      "initial_state": {
+        "binding_flag": 1,
+        "connection_identifier_hex": "01",
+        "local_source_2_to_7_hex": "22 33 44 55 66 77",
+        "stored_peer_hex": "12 34 56 78 9A BC"
+      },
+      "kind": "production_getter",
+      "profile_id": "barrel-prod-1.04",
+      "request_payload_hex": "59 0A 00 01"
+    },
+    {
+      "accepts": true,
+      "config_10_bit7": 0,
+      "config_11_bit5": 0,
+      "id": "mode0-flags-00",
+      "kind": "header_gate",
+      "profile_id": "barrel-test-1.02",
+      "rejection_reply_hex": null
+    },
+    {
+      "accepts": false,
+      "config_10_bit7": 0,
+      "config_11_bit5": 1,
+      "id": "mode0-flags-01",
+      "kind": "header_gate",
+      "profile_id": "barrel-test-1.02",
+      "rejection_reply_hex": "07"
+    },
+    {
+      "accepts": false,
+      "config_10_bit7": 1,
+      "config_11_bit5": 0,
+      "id": "mode0-flags-10",
+      "kind": "header_gate",
+      "profile_id": "barrel-test-1.02",
+      "rejection_reply_hex": "07"
+    },
+    {
+      "accepts": true,
+      "config_10_bit7": 1,
+      "config_11_bit5": 1,
+      "id": "mode0-flags-11",
+      "kind": "header_gate",
+      "profile_id": "barrel-test-1.02",
+      "rejection_reply_hex": null
+    },
+    {
+      "echo_verified": true,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-exact-echo",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": "01 12 34 56 78 9A BC"
+    },
+    {
+      "echo_verified": false,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-ack-only",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": "01"
+    },
+    {
+      "echo_verified": false,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-wrong-peer",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": "01 12 34 56 78 9A BD"
+    },
+    {
+      "echo_verified": false,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-rejected",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": "02"
+    },
+    {
+      "echo_verified": false,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-extra-byte",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": "01 12 34 56 78 9A BC 00"
+    },
+    {
+      "echo_verified": false,
+      "hardware_pairing_verified": false,
+      "id": "client-reply-empty",
+      "intended_peer_hex": "12 34 56 78 9A BC",
+      "kind": "client_reply_validation",
+      "profile_id": "barrel-test-1.02",
+      "reply_hex": ""
+    }
+  ],
+  "contract_id": "k10-barrel.ext58.selector0a.static.v1",
+  "contract_path": "../contracts/k10-barrel-ext58.json",
+  "hardware_qualified": false,
+  "provenance": "Original synthetic structural and client-response examples derived from static analysis; no captured BLE traffic or hardware qualification.",
+  "schema_version": "0.1.0"
+}

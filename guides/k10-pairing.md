@@ -4,11 +4,13 @@ The intended operation associates one inspected K10+ robot with one compatible a
 
 ## What the investigation already establishes
 
-In the analyzed Barrel Test 1.02 handler, the extended setter `58 0A 02` copies six address bytes beginning at offset 6 of the outer mode-0 frame. The recovered Swift builder puts them at offset 5. This is a concrete encoding defect; appending an assumed zero is not a substitute for understanding the intervening byte and address representation.
+In the analyzed Barrel Test 1.02 handler, the extended setter `58 0A 02` copies six address bytes beginning at offset 6 of the outer mode-0 frame. The recovered Swift builder puts them at offset 5. This is a concrete encoding defect. The completed static trace shows that offset 5 is unused by this operation in both examined EXT handlers; a research encoder may emit `00` there as an explicit client convention. That does not establish the conversion from a QR/display MAC to the six protocol bytes.
 
 The exact image digest, dispatcher and handler addresses are recorded in [the analyzed baseline](../reference/wocode.md#analyzed-baseline). This finding is static evidence, not a captured successful repair.
 
 The handler echoes the copied bytes after status `01`. That echo alone does not show that the robot and barrel agree, or that the association survives a restart. Static analysis and qualification on devices are tracked separately.
+
+The [detailed EXT58/EXT59 contract](../appendices/k10-barrel-ext58.md) records the exact guards, ignored byte, reply lengths and static storage findings. Its [synthetic fixtures](../fixtures/k10-barrel-ext58.json) are structural examples, not successful device captures. Test 1.02 has no `59/0A` peer getter; Prod 1.04 has a conditional payload-level getter, while its complete-frame dispatcher remains unresolved.
 
 ## Planned user procedure
 

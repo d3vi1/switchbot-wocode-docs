@@ -1,0 +1,17 @@
+name: Validate protocol documentation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate links, corpus and structural fixtures
+        run: python3 scripts/validate_docs.py
+      - name: Check whitespace and unresolved merge markers
+        run: git diff --check HEAD^ HEAD

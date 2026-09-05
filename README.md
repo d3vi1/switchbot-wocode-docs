@@ -21,3 +21,11 @@ Swift application: [Switchbot-K10-Re-Pair](https://github.com/d3vi1/Switchbot-K1
 Read [the evidence rules](reference/evidence.md), [the common framing boundary](reference/wocode.md), and [the operation model](reference/operations.md). The [capability catalog](catalog/capabilities.json) is machine-readable and deliberately contains no hardware-qualified operation yet. Empty qualification is a result, not permission to infer support.
 
 Document schema version: **0.1.0**. Research descriptions may advance without enabling a release capability. An application pins a reviewed documentation commit and the catalog digest used for its build.
+
+## Evidence and structural conformance
+
+- [Read the K10 barrel EXT58/EXT59 contract](appendices/k10-barrel-ext58.md).
+- [Inspect the machine-readable contract](contracts/k10-barrel-ext58.json) and [synthetic fixtures](fixtures/k10-barrel-ext58.json).
+- [Review the firmware corpus identity checkpoint](corpus/m0-summary.md) and [reproduce the inventory](corpus/README.md).
+
+Run `python3 scripts/validate_docs.py` to check local links, JSON, corpus identities and structural fixtures. These checks do not contact hardware or enable release operations.
