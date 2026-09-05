@@ -22,4 +22,4 @@ Both reviewed EXT handlers begin at `0x00810950`; equal addresses alone are not 
 
 The `58 0A 02` six-byte copy at `P[4..9]`, ignored `P[3]`, set rejection condition and seven-byte echo are shared by both reviewed handlers. They are recorded here as unchanged comparison context, not as an invented version delta. The application fix for the shifted byte is a client implementation correction, not a firmware API change.
 
-The Test 1.02 frame relationship is documented in [the exact analyzed baseline](../reference/wocode.md#analyzed-baseline). The dedicated EXT58 contract and fixtures extend this evidence record. Deferred storage behavior is intentionally outside this API changelog until a corresponding BLE-visible effect is demonstrated.
+The Test 1.02 frame relationship is documented in [the exact analyzed baseline](../reference/wocode.md#analyzed-baseline). The [reviewed EXT58/EXT59 contract](../appendices/k10-barrel-ext58.md) and [synthetic getter cases](../fixtures/k10-barrel-ext58.json) extend this evidence record. Deferred storage behavior is intentionally outside this API changelog until a corresponding BLE-visible effect is demonstrated.
