@@ -15,7 +15,7 @@ Both reviewed EXT handlers begin at `0x00810950`; equal addresses alone are not 
 
 | API behavior | Test 1.02 | Production 1.04 | Client impact |
 | --- | --- | --- | --- |
-| `59 0A` address result | No selector `0A` branch; returns one-byte `01` without address data | When `P[3] == 01` and the bound flag differs from `1` or connection identifier equals `FF`, returns 15 bytes: `01 20 01`, six stored peer bytes, six reversed local-address bytes | A one-byte success status is not a pairing-state read. Select the response contract by exact firmware and check complete length/fields |
+| `59 0A` address result | No selector `0A` branch; returns one-byte `01` without address data | When `P[3] == 01 AND (bound_flag != 1 OR connection_identifier == FF)`, returns 15 bytes: `01 20 01`, six stored peer bytes, six reversed local-address bytes | A one-byte success status is not a pairing-state read. Select the response contract by exact firmware and check complete length/fields |
 | `59 0A` outside the data predicate | One-byte `01` | One-byte `01` without addresses | Treat missing address data as unavailable, never as verified association |
 
 `P[2]` is ignored by the Prod selector branch; the data switch is `P[3]`. Its state predicate is evaluated before producing the address payload. Do not turn this payload-relative description into an assumed Prod outer-frame encoder.
