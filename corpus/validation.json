@@ -1,0 +1,15 @@
+{
+  "errors": [],
+  "file_count": 432,
+  "generator_sha256": "2ecfd4ccd165e21b045ffa60e77b7a33f0878aa315fd0be36300d6e2853e8ae2",
+  "inventory_sha256": "dcb374f2a8c059875b44ce4c0806f62e7e5fc53e374c4925931a05980dc16bb0",
+  "reproducibility": {
+    "comparison": "Second full pass normalized to the first caller-supplied timestamp equals the first complete artifact byte for byte.",
+    "first_artifact_sha256": "4073c761c59f0d1b235c6f583895522f0e75c6fb06e8f3d205606fe97afc9523",
+    "full_source_hash_passes": 2,
+    "matches": true,
+    "normalized_second_sha256": "4073c761c59f0d1b235c6f583895522f0e75c6fb06e8f3d205606fe97afc9523"
+  },
+  "valid": true,
+  "validator_sha256": "e4ceb9905a1350acba42efccfea63a53d5a3af138c0e64e8f73350adc6047e37"
+}
