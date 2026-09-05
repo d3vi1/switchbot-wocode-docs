@@ -6,6 +6,8 @@ The intended operation associates one inspected K10+ robot with one compatible a
 
 In the analyzed Barrel Test 1.02 handler, the extended setter `58 0A 02` copies six address bytes beginning at offset 6 of the outer mode-0 frame. The recovered Swift builder puts them at offset 5. This is a concrete encoding defect; appending an assumed zero is not a substitute for understanding the intervening byte and address representation.
 
+The exact image digest, dispatcher and handler addresses are recorded in [the analyzed baseline](../reference/wocode.md#analyzed-baseline). This finding is static evidence, not a captured successful repair.
+
 The handler echoes the copied bytes after status `01`. That echo alone does not show that the robot and barrel agree, or that the association survives a restart. Static analysis and qualification on devices are tracked separately.
 
 ## Planned user procedure
